@@ -1,6 +1,5 @@
 import type { RowComponentProps } from "react-window";
 import CalendarCell from "./CalendarCell";
-import { twMerge } from "tailwind-merge";
 
 interface Event {
   id: number;
@@ -24,7 +23,7 @@ interface CalendarRowProps {
 
 export default function CalendarRow({ index, weeks, style }: RowComponentProps<CalendarRowProps>) {
   return (
-    <div className={twMerge("grid grid-cols-7 gap-px", style)}>
+    <div className="grid grid-cols-7 gap-px" style={style}>
       {weeks[index].map((day) => (
         <CalendarCell key={day.date} {...day} />
       ))}

@@ -59,7 +59,7 @@ The app will be available at [http://localhost:3000](http://localhost:3000).
 * [x] Implement **infinite past/future scroll** (used `virtuoso`).
 * [x] Ensure **continuous scroll** — not snap-to-month.
 * [x] Support **partial visibility of two months** in viewport.
-* [ ] Sticky header updates to show the **month with most visible area**.
+* [x] Sticky header updates to show the **month with most visible area**.
 
 ### Journal Entries
 

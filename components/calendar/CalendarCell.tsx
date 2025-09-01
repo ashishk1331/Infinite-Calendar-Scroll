@@ -15,7 +15,7 @@ export default function CalendarCell({
   return (
     <div
       className={twMerge(
-        "relative px-3 py-2 h-[150px] first:border-l border-r border-t border-neutral-200",
+        "relative px-3 py-2 h-[120px] first:bg-gray-100! first:border-l border-r border-t border-neutral-200",
         isCurrentMonth
           ? isSelected
             ? "bg-indigo-100"

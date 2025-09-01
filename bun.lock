@@ -10,7 +10,7 @@
         "next": "15.5.2",
         "react": "19.1.0",
         "react-dom": "19.1.0",
-        "react-window": "^2.0.2",
+        "react-virtuoso": "^4.14.0",
         "tailwind-merge": "^3.3.1",
       },
       "devDependencies": {
@@ -263,7 +263,7 @@
 
     "react-dom": ["react-dom@19.1.0", "", { "dependencies": { "scheduler": "^0.26.0" }, "peerDependencies": { "react": "^19.1.0" } }, "sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g=="],
 
-    "react-window": ["react-window@2.0.2", "", { "peerDependencies": { "react": "^18.0.0 || ^19.0.0", "react-dom": "^18.0.0 || ^19.0.0" } }, "sha512-KCDGR+5qB6hG/eDWCNZku5ERMV21vjMEDJeobqPXI0/foVDaqjf+Fsum4iJu0ftLUTxh9yvZ9t7T+SJ7woOLFw=="],
+    "react-virtuoso": ["react-virtuoso@4.14.0", "", { "peerDependencies": { "react": ">=16 || >=17 || >= 18 || >= 19", "react-dom": ">=16 || >=17 || >= 18 || >=19" } }, "sha512-fR+eiCvirSNIRvvCD7ueJPRsacGQvUbjkwgWzBZXVq+yWypoH7mRUvWJzGHIdoRaCZCT+6mMMMwIG2S1BW3uwA=="],
 
     "scheduler": ["scheduler@0.26.0", "", {}, "sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA=="],
 

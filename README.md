@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Infinite Scrollable Journal Calendar
 
-## Getting Started
+An infinite-scrolling calendar built with **Next.js**, **TypeScript**, **Tailwind CSS**, and **react-window** for smooth, virtualized week-by-week rendering. Users can view journal entries attached to dates, scroll seamlessly into the past and future, and interact with entries in a swipeable card interface.
 
-First, run the development server:
+---
+
+## 🚀 Tech Stack
+
+* [Next.js (App Router)](https://nextjs.org/docs/app)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Tailwind CSS](https://tailwindcss.com/)
+* [date-fns](https://date-fns.org/)
+* [react-window](https://github.com/bvaughn/react-window)
+
+---
+
+## 📂 Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+src/
+ ├─ components/
+ │   ├─ calendar/
+ │   │   ├─ CalendarCell.tsx
+ │   │   ├─ CalendarRow.tsx
+ │   │   └─ CalendarTable.tsx
+ │   ├─ entry/
+ │   │   ├─ EntryCard.tsx
+ │   │   └─ EntryCarousel.tsx
+ │   └─ ui/...
+ ├─ hooks/...
+ ├─ lib/...
+ ├─ state/...
+ └─ types/...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚙️ Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Install dependencies
+bun install
 
-## Learn More
+# Start development server
+bun dev
 
-To learn more about Next.js, take a look at the following resources:
+# Build for production
+bun build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The app will be available at [http://localhost:3000](http://localhost:3000).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## ✅ Assignment Tasks Checklist
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Calendar Functionality
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* [x] Implement **infinite past/future scroll** (used `virtuoso`).
+* [x] Ensure **continuous scroll** — not snap-to-month.
+* [x] Support **partial visibility of two months** in viewport.
+* [ ] Sticky header updates to show the **month with most visible area**.
+
+### Journal Entries
+
+* [ ] Parse and normalize dataset into ISO dates.
+* [ ] Render journal entries inside **calendar cells**.
+* [ ] Support **multiple entries per day** (show chips or “+X more”).
+* [ ] On click, open **swipable card detail UI** (EntryCarousel).
+* [ ] Implement prev/next navigation between entries.
+
+### UI & UX
+
+* [x] Build **custom calendar components** (`CalendarCell`, `CalendarRow`, `CalendarTable`) with Tailwind.
+* [ ] Add **responsive design** (desktop + mobile grid).
+* [ ] Implement **sticky month header**.
+* [ ] Add **dark mode support**.
+* [ ] Ensure **accessibility** (roles, aria attributes, keyboard nav).
+
+### State & Data
+
+* [ ] Use Zustand store for managing calendar state (selected entry, filters, etc.).
+* [ ] Persist journal entries with **localStorage or IndexedDB**.
+* [ ] Add actions for **add/edit/delete** journal entries.
+
+### Performance
+
+* [ ] Virtualize rows (weeks) with `react-window` to reduce DOM nodes.
+* [ ] Precompute month matrices and cache with `date-fns`.
+* [ ] Optimize images with `next/image` (lazy loading + placeholders).
+* [ ] Throttle/debounce scroll + intersection observers.
+
+### Deployment
+
+* [ ] Configure Next.js image domains for journal images.
+* [x] Deploy to **Vercel**.
+* [x] Connect GitHub repo → Vercel for preview deployments.
+* [ ] Add final README and documentation.
+
+---

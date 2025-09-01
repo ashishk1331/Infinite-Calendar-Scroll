@@ -1,103 +1,131 @@
-import Image from "next/image";
+"use client";
+
+import CalendarTable from "@/components/calendar.tsx/CalendarTable";
+
+const days = [
+  { date: "2021-12-27", events: [] },
+  { date: "2021-12-28", events: [] },
+  { date: "2021-12-29", events: [] },
+  { date: "2021-12-30", events: [] },
+  { date: "2021-12-31", events: [] },
+  { date: "2022-01-01", isCurrentMonth: true, events: [] },
+  { date: "2022-01-02", isCurrentMonth: true, events: [] },
+  {
+    date: "2022-01-03",
+    isCurrentMonth: true,
+    events: [
+      {
+        id: 1,
+        name: "Design review",
+        time: "10AM",
+        datetime: "2022-01-03T10:00",
+        href: "#",
+      },
+      {
+        id: 2,
+        name: "Sales meeting",
+        time: "2PM",
+        datetime: "2022-01-03T14:00",
+        href: "#",
+      },
+    ],
+  },
+  { date: "2022-01-04", isCurrentMonth: true, events: [] },
+  { date: "2022-01-05", isCurrentMonth: true, events: [] },
+  { date: "2022-01-06", isCurrentMonth: true, events: [] },
+  {
+    date: "2022-01-07",
+    isCurrentMonth: true,
+    events: [
+      {
+        id: 3,
+        name: "Date night",
+        time: "6PM",
+        datetime: "2022-01-08T18:00",
+        href: "#",
+      },
+    ],
+  },
+  { date: "2022-01-08", isCurrentMonth: true, events: [] },
+  { date: "2022-01-09", isCurrentMonth: true, events: [] },
+  { date: "2022-01-10", isCurrentMonth: true, events: [] },
+  { date: "2022-01-11", isCurrentMonth: true, events: [] },
+  {
+    date: "2022-01-12",
+    isCurrentMonth: true,
+    isToday: true,
+    events: [
+      {
+        id: 6,
+        name: "Sam's birthday party",
+        time: "2PM",
+        datetime: "2022-01-25T14:00",
+        href: "#",
+      },
+    ],
+  },
+  { date: "2022-01-13", isCurrentMonth: true, events: [] },
+  { date: "2022-01-14", isCurrentMonth: true, events: [] },
+  { date: "2022-01-15", isCurrentMonth: true, events: [] },
+  { date: "2022-01-16", isCurrentMonth: true, events: [] },
+  { date: "2022-01-17", isCurrentMonth: true, events: [] },
+  { date: "2022-01-18", isCurrentMonth: true, events: [] },
+  { date: "2022-01-19", isCurrentMonth: true, events: [] },
+  { date: "2022-01-20", isCurrentMonth: true, events: [] },
+  { date: "2022-01-21", isCurrentMonth: true, events: [] },
+  {
+    date: "2022-01-22",
+    isCurrentMonth: true,
+    isSelected: true,
+    events: [
+      {
+        id: 4,
+        name: "Maple syrup museum",
+        time: "3PM",
+        datetime: "2022-01-22T15:00",
+        href: "#",
+      },
+      {
+        id: 5,
+        name: "Hockey game",
+        time: "7PM",
+        datetime: "2022-01-22T19:00",
+        href: "#",
+      },
+    ],
+  },
+  { date: "2022-01-23", isCurrentMonth: true, events: [] },
+  { date: "2022-01-24", isCurrentMonth: true, events: [] },
+  { date: "2022-01-25", isCurrentMonth: true, events: [] },
+  { date: "2022-01-26", isCurrentMonth: true, events: [] },
+  { date: "2022-01-27", isCurrentMonth: true, events: [] },
+  { date: "2022-01-28", isCurrentMonth: true, events: [] },
+  { date: "2022-01-29", isCurrentMonth: true, events: [] },
+  { date: "2022-01-30", isCurrentMonth: true, events: [] },
+  { date: "2022-01-31", isCurrentMonth: true, events: [] },
+  { date: "2022-02-01", events: [] },
+  { date: "2022-02-02", events: [] },
+  { date: "2022-02-03", events: [] },
+  {
+    date: "2022-02-04",
+    events: [
+      {
+        id: 7,
+        name: "Cinema with friends",
+        time: "9PM",
+        datetime: "2022-02-04T21:00",
+        href: "#",
+      },
+    ],
+  },
+  { date: "2022-02-05", events: [] },
+  { date: "2022-02-06", events: [] },
+];
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    <div className="w-full h-full">
+      <CalendarTable days={days} />
     </div>
   );
 }

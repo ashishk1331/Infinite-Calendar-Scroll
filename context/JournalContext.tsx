@@ -35,11 +35,11 @@ export default function JournalWrapper({ children }: PropsWithChildren) {
         ),
       ),
     [],
-  );
+  ).map((event, index) => ({ ...event, index }));
   const eventsParsed = useMemo(() => {
     const damp: IndexedJournals = {};
     eventsSorted.forEach(
-      (event, index) => (damp[event.date] = { ...event, index }),
+      event => damp[event.date] = event,
     );
     return damp;
   }, []);

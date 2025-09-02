@@ -2,16 +2,11 @@ import { Virtuoso, VirtuosoHandle } from "react-virtuoso";
 import CalendarRow from "./CalendarRow";
 import CalendarHeader from "./CalendarHeader";
 import { useRef, useState } from "react";
-import type { Journal } from "@/types/types";
 
 const TOTAL_WEEKS = 100_000;
 const START_INDEX = TOTAL_WEEKS / 2;
 
-type CalendarTableProps = {
-  eventsParsed: Record<string, Journal>;
-};
-
-export default function CalendarTable({ eventsParsed }: CalendarTableProps) {
+export default function CalendarTable() {
   const listRef = useRef<VirtuosoHandle>(null);
   const [activeRangeMid, setActiveRangeMid] = useState(START_INDEX);
 
@@ -36,11 +31,7 @@ export default function CalendarTable({ eventsParsed }: CalendarTableProps) {
         overscan={2}
         increaseViewportBy={200}
         itemContent={(index) => (
-          <CalendarRow
-            index={index}
-            startIndex={START_INDEX}
-            eventsParsed={eventsParsed}
-          />
+          <CalendarRow index={index} startIndex={START_INDEX} />
         )}
         rangeChanged={({ endIndex, startIndex }) =>
           setActiveRangeMid(Math.round((endIndex + startIndex) / 2))

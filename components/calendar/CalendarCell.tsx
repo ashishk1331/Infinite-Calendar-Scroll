@@ -5,6 +5,7 @@ import { Star } from "lucide-react";
 import { useModal } from "../modal/ModalWrapper";
 import ModalCard from "../modal/ModalCard";
 import Pill from "../ui/Pill";
+import ModalCarousel from "../modal/ModalCarousel";
 
 export default function CalendarCell({
   day,
@@ -39,7 +40,7 @@ export default function CalendarCell({
       {journal && (
         <div
           className="mt-2 flex flex-col gap-1 text-xs"
-          onClick={() => openModal(<ModalCard journal={journal} />)}
+          onClick={() => openModal(<ModalCarousel journalId={journal.index} />)}
         >
           <div className="w-fit mx-auto flex items-center gap-px">
             {Array(5)

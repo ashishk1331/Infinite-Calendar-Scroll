@@ -1,5 +1,6 @@
+import { useJournals } from "@/context/JournalContext";
 import CalendarCell from "./CalendarCell";
-import type { Day, Journal } from "@/types/types";
+import type { Day } from "@/types/types";
 import {
   addDays,
   addWeeks,
@@ -22,10 +23,10 @@ function weekStartDate(index: number, startIndex: number): Date {
 type CalendarRowProps = {
   index: number;
   startIndex: number;
-  eventsParsed: Record<string, Journal>;
 };
 
-const CalendarRow = ({ index, startIndex, eventsParsed }: CalendarRowProps) => {
+const CalendarRow = ({ index, startIndex }: CalendarRowProps) => {
+  const { eventsParsed } = useJournals();
   const weekStart = weekStartDate(index, startIndex);
   let days: Day[] = [];
 
@@ -40,7 +41,6 @@ const CalendarRow = ({ index, startIndex, eventsParsed }: CalendarRowProps) => {
       isCurrentMonth: isSameMonth(new Date(), date),
       isToday: isToday(date),
       isSelected: false,
-      events: [],
       journal: eventsParsed[key],
     });
   }

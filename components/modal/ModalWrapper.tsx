@@ -1,3 +1,4 @@
+import { X } from "lucide-react";
 import {
   createContext,
   type PropsWithChildren,
@@ -33,16 +34,16 @@ export default function ModalWrapper({ children }: PropsWithChildren) {
   return (
     <ModalContext.Provider value={{ openModal, closeModal }}>
       {modal && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/25 backdrop-blur-sm p-12"
-          onClick={closeModal}
-        >
-          <div
-            className="bg-white rounded-lg shadow-lg overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {modal}
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/75 backdrop-blur-sm">
+          <div className="absolute inset-0 w-full h-fit flex z-50 flex-row-reverse items-center p-2">
+            <button
+              onClick={closeModal}
+              className="p-2 bg-white/25 rounded-full"
+            >
+              <X size={20} className="stroke-white" />
+            </button>
           </div>
+          {modal}
         </div>
       )}
       {children}

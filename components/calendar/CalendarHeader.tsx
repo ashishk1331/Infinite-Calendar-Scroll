@@ -20,7 +20,7 @@ export default function CalendarHeader({
     <div className="fixed w-full top-0 z-20 border-b border-neutral-200 bg-gray-50">
       <div className="p-2 flex items-center justify-between text-xl">
         <h1>Calendar</h1>
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-4 md:gap-8">
           <h1 className="font-semibold inline-flex gap-1">
             <span className="text-indigo-600">{format(date, "MMM")}</span>
             <span>{format(date, "y")}</span>

@@ -1,13 +1,15 @@
 import CalendarCell from "./CalendarCell";
-import type { Day } from "@/types/types";
+import type { Day, Journal } from "@/types/types";
 import {
   addDays,
   addWeeks,
+  format,
   isSameMonth,
   isToday,
   startOfWeek,
   subWeeks,
 } from "date-fns";
+import { memo } from "react";
 
 function weekStartDate(index: number, startIndex: number): Date {
   const thisWeekStart = startOfWeek(new Date());
@@ -17,27 +19,30 @@ function weekStartDate(index: number, startIndex: number): Date {
     : subWeeks(thisWeekStart, -offset);
 }
 
-function buildDay(date: Date): Day {
-  return {
-    date: date.toJSON(),
-    isCurrentMonth: isSameMonth(new Date(), date),
-    isToday: isToday(date),
-    isSelected: false,
-    events: [],
-  };
-}
-
 type CalendarRowProps = {
   index: number;
   startIndex: number;
+  eventsParsed: Record<string, Journal>;
 };
 
-export default function CalendarRow({ index, startIndex }: CalendarRowProps) {
+const CalendarRow = ({ index, startIndex, eventsParsed }: CalendarRowProps) => {
   const weekStart = weekStartDate(index, startIndex);
   let days: Day[] = [];
 
   for (let i = 0; i < 7; i++) {
-    days.push(buildDay(addDays(weekStart, i)));
+    const date = addDays(weekStart, i);
+    const key = format(date, "dd/MM/yyyy");
+    const day = format(date, "d");
+
+    days.push({
+      date: key,
+      day,
+      isCurrentMonth: isSameMonth(new Date(), date),
+      isToday: isToday(date),
+      isSelected: false,
+      events: [],
+      journal: eventsParsed[key],
+    });
   }
 
   return (
@@ -47,4 +52,6 @@ export default function CalendarRow({ index, startIndex }: CalendarRowProps) {
       ))}
     </div>
   );
-}
+};
+
+export default memo(CalendarRow);

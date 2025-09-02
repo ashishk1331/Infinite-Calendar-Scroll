@@ -2,6 +2,9 @@ import { twMerge } from "tailwind-merge";
 import type { Day } from "@/types/types";
 import Image from "next/image";
 import { Star } from "lucide-react";
+import { useModal } from "../modal/ModalWrapper";
+import ModalCard from "../modal/ModalCard";
+import Pill from "../ui/Pill";
 
 export default function CalendarCell({
   day,
@@ -11,6 +14,8 @@ export default function CalendarCell({
   isSelected,
   journal,
 }: Day) {
+  const { openModal } = useModal();
+
   return (
     <div
       className={twMerge(
@@ -26,14 +31,17 @@ export default function CalendarCell({
         dateTime={date}
         className={twMerge(
           isToday &&
-          "flex h-6 w-6 items-center justify-center mx-auto rounded-full bg-indigo-600 font-semibold text-white",
+            "flex h-6 w-6 items-center justify-center mx-auto rounded-full bg-indigo-600 font-semibold text-white",
         )}
       >
         {day}
       </time>
       {journal && (
-        <div className="mt-2 flex flex-col gap-1 text-xs">
-          <div className="flex items-center gap-px">
+        <div
+          className="mt-2 flex flex-col gap-1 text-xs"
+          onClick={() => openModal(<ModalCard journal={journal} />)}
+        >
+          <div className="w-fit mx-auto flex items-center gap-px">
             {Array(5)
               .fill("")
               .map((_, index) => (
@@ -59,21 +67,12 @@ export default function CalendarCell({
           <div className="flex items-center justify-center gap-px text-gray-500">
             {journal.categories.length > 2 ? (
               <>
-                <span className="inline-flex items-center rounded-full bg-indigo-50 px-1.5 py-0.5 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
-                  {journal.categories[0].charAt(0).toUpperCase()}
-                </span>
-                <span className="inline-flex items-center rounded-full bg-indigo-50 px-1.5 py-0.5 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
-                  {journal.categories.length - 1}+
-                </span>
+                <Pill>{journal.categories[0].charAt(0).toUpperCase()}</Pill>
+                <Pill>{journal.categories.length - 1}+</Pill>
               </>
             ) : (
               journal.categories.map((cat) => (
-                <span
-                  key={cat}
-                  className="inline-flex items-center rounded-full bg-indigo-50 px-1.5 py-0.5 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10"
-                >
-                  {cat.charAt(0).toUpperCase()}
-                </span>
+                <Pill key={cat}>{cat.charAt(0).toUpperCase()}</Pill>
               ))
             )}
           </div>

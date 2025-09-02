@@ -1,6 +1,7 @@
 "use client";
 
 import CalendarTable from "@/components/calendar/CalendarTable";
+import ModalWrapper from "@/components/modal/ModalWrapper";
 import { events } from "@/static/events";
 import type { Journal } from "@/types/types";
 import { useMemo } from "react";
@@ -15,8 +16,10 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="w-screen h-screen">
-      <CalendarTable eventsParsed={eventsParsed} />
-    </div>
+    <ModalWrapper>
+      <div className="w-screen h-screen">
+        <CalendarTable eventsParsed={eventsParsed} />
+      </div>
+    </ModalWrapper>
   );
 }

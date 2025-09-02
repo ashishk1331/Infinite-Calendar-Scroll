@@ -13,7 +13,7 @@ export default function ModalCard({ journal }: ModalCardProps) {
   const { description, imgUrl, date } = journal;
 
   return (
-    <div className="flex flex-col items-center gap-4 w-full max-w-sm bg-white m-auto rounded-xl shadow-xl overflow-hidden">
+    <div className="flex-shrink-0 snap-center flex flex-col items-center gap-4 w-full max-w-xs bg-white m-auto rounded-xl shadow-xl overflow-hidden">
       <div className="w-full max-h-72 overflow-hidden">
         <Image
           src={imgUrl}

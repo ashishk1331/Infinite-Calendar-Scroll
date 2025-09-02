@@ -2,7 +2,8 @@
 
 import ModalCard from "./ModalCard";
 import { useJournals } from "@/context/JournalContext";
-import { useEffect, useRef } from "react";
+import { Journal } from "@/types/types";
+import { useEffect, useState } from "react";
 
 type ModalCarouselProps = {
   journalId: number;
@@ -10,26 +11,19 @@ type ModalCarouselProps = {
 
 export default function ModalCarousel({ journalId }: ModalCarouselProps) {
   const { events } = useJournals();
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [journals, setJournals] = useState<Journal[]>([events[journalId]]);
 
   useEffect(() => {
-    const el = containerRef.current?.children[journalId] as HTMLElement;
-    el?.scrollIntoView({
-      behavior: "auto",
-      inline: "center",
-      block: "nearest",
-    });
+    const start = Math.max(journalId - 1, 0);
+    const end = Math.min(events.length - 1, journalId + 1);
+
+    setJournals(events.slice(start, end + 1))
   }, [journalId]);
 
   return (
-    <div
-      ref={containerRef}
-      className="flex w-full gap-4 justify-stretch overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide px-4 md:px-8"
-    >
-      {events.map((_, idx) => (
-        <div key={idx} className="flex-shrink-0 w-[320px] snap-center">
-          <ModalCard journal={events[idx]} />
-        </div>
+    <div className="flex w-full gap-4 items-stretch overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide px-4 md:px-8">
+      {journals.map((journal, index) => (
+        <ModalCard key={journal.description + index} journal={journal} />
       ))}
     </div>
   );

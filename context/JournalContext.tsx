@@ -30,8 +30,8 @@ export default function JournalWrapper({ children }: PropsWithChildren) {
     () =>
       events.sort((a, b) =>
         compareDesc(
-          parse(a.date, "dd/MM/yyyy", new Date()),
           parse(b.date, "dd/MM/yyyy", new Date()),
+          parse(a.date, "dd/MM/yyyy", new Date()),
         ),
       ),
     [],

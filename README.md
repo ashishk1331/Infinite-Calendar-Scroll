@@ -14,6 +14,23 @@ An infinite-scrolling calendar built with **Next.js**, **TypeScript**, **Tailwin
 
 ---
 
+## ⚙️ Getting Started
+
+```bash
+# Install dependencies
+bun install
+
+# Start development server
+bun dev
+
+# Build for production
+bun build
+```
+
+The app will be available at [http://localhost:3000](http://localhost:3000).
+
+---
+
 
 ## 🎹 Technique
 
@@ -52,23 +69,6 @@ Now, how do we calculate the active month for the header? For this, I found a ha
 I simply take the mean of these two values and use it to calculate the offset week, which in turn determines the active month and year.
 
 And voila! ✨
-
----
-
-## ⚙️ Getting Started
-
-```bash
-# Install dependencies
-bun install
-
-# Start development server
-bun dev
-
-# Build for production
-bun build
-```
-
-The app will be available at [http://localhost:3000](http://localhost:3000).
 
 ---
 

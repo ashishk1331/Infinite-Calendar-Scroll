@@ -32,7 +32,7 @@ export default function CalendarCell({
         dateTime={date}
         className={twMerge(
           isToday &&
-            "flex h-6 w-6 items-center justify-center mx-auto rounded-full bg-indigo-600 font-semibold text-white",
+          "flex h-6 w-6 items-center justify-center mx-auto rounded-full bg-indigo-600 font-semibold text-white",
         )}
       >
         {day}
@@ -50,6 +50,7 @@ export default function CalendarCell({
                   key={index + ""}
                   size={12}
                   className={twMerge(
+                    "size-2 md:size-3",
                     index + 1 <= Math.floor(journal.rating)
                       ? "stroke-indigo-600 fill-indigo-600"
                       : "stroke-neutral-600 fill-neutral-600",

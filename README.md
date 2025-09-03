@@ -4,17 +4,18 @@ An infinite-scrolling calendar built with **Next.js**, **TypeScript**, **Tailwin
 
 ---
 
-## 🚀 Tech Stack
+## Tech Stack
 
 * [Next.js (App Router)](https://nextjs.org/docs/app)
 * [TypeScript](https://www.typescriptlang.org/)
 * [Tailwind CSS](https://tailwindcss.com/)
 * [date-fns](https://date-fns.org/)
 * [react-virtuoso](https://virtuoso.dev/)
+* [Embla Carousel](https://www.embla-carousel.com/)
 
 ---
 
-## ⚙️ Getting Started
+## Getting Started
 
 ```bash
 # Install dependencies
@@ -31,8 +32,32 @@ The app will be available at [http://localhost:3000](http://localhost:3000).
 
 ---
 
+## Design Choices
 
-## 🎹 Technique
+1. **Modal**
+   I've made a custom modal API using `createContext` hook in react. 
+   - It only has two functions: `openModal` and `closeModal`. 
+   - Also, you can press `esc` key to hide the modal.
+
+2. **Carousel**
+   For making the swipable card UI, I've used [`Embla Carousel`](https://www.embla-carousel.com/).
+   - The active cards are scaled like in the video.
+   - Cards adapt to different screen sizes as well.
+
+3. **Calendar**
+   The calendar follows a week rendering strategy and to maximise the scrolling experience a react virtualialized list library is used, namely [`react-virtuoso`](https://virtuoso.dev/).
+   - Refer to below section to get more in-depth knowledge about the rendering strategy.
+   - Indexes are used to render past/future weeks.
+   - Ranges are used to get present month.
+   *[Also to handle header and first block overlapping situation, always use `start_index - 1` index.]*
+
+4. **UI**
+   - I've utilised the [Month-view Calendar](https://tailwindcss.com/plus/ui-blocks/application-ui/data-display/calendars#component-c29139529079ea762f118812bbeaeb9e-dark) from the tailwind components library.
+   - Rest of the UI is made by me.
+
+---
+
+## Trick for ≈ infinite calendar
 
 ![Illustration explaining the calendar loadout](./technique.webp)
 
@@ -72,44 +97,66 @@ And voila! ✨
 
 ---
 
-## ✅ Assignment Tasks Checklist
+### Assignment Tasks Checklist
+
+***
 
 ### Calendar Functionality
+- [x] Implement **infinite past/future scroll** (used `virtuoso`).
+- [x] Ensure **continuous scroll** — not snap-to-month.
+- [x] Support **partial visibility of two months** in viewport.
+- [x] Sticky header updates to show the **month with most visible area**.
+- [x] Implement seamless loading of new months without flicker or jumps.
+- [x] Build **custom calendar components** (`CalendarCell`, `CalendarRow`, `CalendarTable`) with Tailwind.
 
-* [x] Implement **infinite past/future scroll** (used `virtuoso`).
-* [x] Ensure **continuous scroll** — not snap-to-month.
-* [x] Support **partial visibility of two months** in viewport.
-* [x] Sticky header updates to show the **month with most visible area**.
+***
 
 ### Journal Entries
+- [x] Parse and normalize dataset into ISO dates.
+- [x] Render journal entries inside **calendar cells**.
+- [x] On click, open **swipable card detail UI** (EntryCarousel).
+- [x] Implement prev/next navigation between entries.
+- [x] Ensure all provided journal entry data (image, rating, categories, date, description) is displayed correctly.
 
-* [x] Parse and normalize dataset into ISO dates.
-* [x] Render journal entries inside **calendar cells**.
-* [ ] On click, open **swipable card detail UI** (EntryCarousel).
-* [ ] Implement prev/next navigation between entries.
+***
 
 ### UI & UX
+- [x] Add **responsive design** (desktop + mobile grid).
+- [x] Implement **sticky month header**.
 
-* [x] Build **custom calendar components** (`CalendarCell`, `CalendarRow`, `CalendarTable`) with Tailwind.
-* [x] Add **responsive design** (desktop + mobile grid).
-* [x] Implement **sticky month header**.
+***
 
 ### Performance
+- [x] Virtualize rows (weeks) with `react-virtuoso` to reduce DOM nodes.
+- [x] Compute week rows on the fly.
+- [x] Optimize images with `next/image` (lazy loading).
 
-* [x] Virtualize rows (weeks) with `react-virtuoso` to reduce DOM nodes.
-* [x] Compute week rows on the fly.
-* [x] Optimize images with `next/image` (lazy loading).
-* [ ] Throttle/debounce scroll + intersection observers.
+***
 
 ### Deployment
+- [x] Configure Next.js image domains for journal images.
+- [x] Deploy to **Vercel**.
+- [x] Connect GitHub repo → Vercel for preview deployments.
+- [ ] Add final README and documentation.
 
-* [x] Configure Next.js image domains for journal images.
-* [x] Deploy to **Vercel**.
-* [x] Connect GitHub repo → Vercel for preview deployments.
-* [ ] Add final README and documentation.
+***
+
+### Bonus Tasks
+
+- [x] Animate the month header when it changes.
+- [x] Use TypeScript throughout the project.
+- [x] Add keyboard navigation (arrow keys to move between months).
+- [ ] Add event search or filtering functionality.
+
+***
+
+### Constraints
+- [x] Do not use any library that provides a ready-made calendar component.
+- [ ] Do not use AI-generated code.
+- [x] Submit both the live URL and the GitHub repo link.
 
 ---
 
-## 🙇 Creator
+## Creator
 
 - [Ashish Khare](https://ashishk1331.vercel.app/)

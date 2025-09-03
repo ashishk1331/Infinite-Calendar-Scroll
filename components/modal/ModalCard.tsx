@@ -13,7 +13,7 @@ export default function ModalCard({ journal }: ModalCardProps) {
   const { description, imgUrl, date } = journal;
 
   return (
-    <div className="flex flex-col items-center gap-4 bg-white rounded-xl shadow-xl overflow-hidden mx-4">
+    <div className="flex h-full flex-col items-center gap-4 bg-white rounded-xl shadow-xl overflow-hidden mx-4">
       <div className="w-full max-h-72 overflow-hidden">
         <Image
           src={imgUrl}
@@ -52,7 +52,7 @@ export default function ModalCard({ journal }: ModalCardProps) {
         </h1>
         <p className="text-xs w-full">{description}</p>
       </div>
-      <button className="w-full text-sm p-3 border-t border-neutral-200 bg-neutral-50 cursor-pointer">
+      <button className="w-full text-sm p-3 border-t border-neutral-200 bg-neutral-50 cursor-pointer mt-auto">
         View Full Post
       </button>
     </div>

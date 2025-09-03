@@ -31,11 +31,11 @@ export default function ModalCarousel({ journalId }: ModalCarouselProps) {
 
   return (
     <div className="w-full max-w-full mx-auto" ref={emblaRef}>
-      <div className="flex">
+      <div className="flex items-stretch">
         {events.map((journal, index) => (
           <div
             key={journal.description + index}
-            className="flex-[0_0_75%] min-w-0 [.is-snapped]:scale-110 transition-transform"
+            className="flex-[0_0_75%] min-w-0 max-w-xs [.is-snapped]:scale-110 transition-transform not-[.is-snapped]:opacity-75"
           >
             <ModalCard journal={journal} />
           </div>

@@ -11,6 +11,7 @@ import {
   subWeeks,
 } from "date-fns";
 import { memo } from "react";
+import { twMerge } from "tailwind-merge";
 
 function weekStartDate(index: number, startIndex: number): Date {
   const thisWeekStart = startOfWeek(new Date());
@@ -23,9 +24,10 @@ function weekStartDate(index: number, startIndex: number): Date {
 type CalendarRowProps = {
   index: number;
   startIndex: number;
+  isActive: boolean;
 };
 
-const CalendarRow = ({ index, startIndex }: CalendarRowProps) => {
+const CalendarRow = ({ index, startIndex, isActive }: CalendarRowProps) => {
   const { eventsParsed } = useJournals();
   const weekStart = weekStartDate(index, startIndex);
   let days: Day[] = [];
@@ -46,7 +48,12 @@ const CalendarRow = ({ index, startIndex }: CalendarRowProps) => {
   }
 
   return (
-    <div className="grid grid-cols-7 gap-px">
+    <div
+      className={twMerge(
+        "grid grid-cols-7 gap-px",
+        isActive && "border-2 border-indigo-600",
+      )}
+    >
       {days.map((day) => (
         <CalendarCell key={day.date} {...day} />
       ))}

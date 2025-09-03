@@ -3,7 +3,6 @@ import type { Day } from "@/types/types";
 import Image from "next/image";
 import { Star } from "lucide-react";
 import { useModal } from "../modal/ModalWrapper";
-import ModalCard from "../modal/ModalCard";
 import Pill from "../ui/Pill";
 import ModalCarousel from "../modal/ModalCarousel";
 
@@ -20,7 +19,7 @@ export default function CalendarCell({
   return (
     <div
       className={twMerge(
-        "relative p-px py-2 h-[200px] first:border-l border-r border-t border-neutral-200 text-center",
+        "relative p-px py-2 h-[200px] first:border-l border-r border-t border-neutral-200 text-center first:bg-gray-100",
         isCurrentMonth
           ? isSelected
             ? "bg-indigo-100"

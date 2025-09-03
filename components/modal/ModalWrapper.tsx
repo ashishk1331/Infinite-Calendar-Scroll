@@ -5,6 +5,7 @@ import {
   type ReactNode,
   useState,
   useContext,
+  useEffect,
 } from "react";
 
 interface ModalData {
@@ -30,6 +31,19 @@ export default function ModalWrapper({ children }: PropsWithChildren) {
   function closeModal() {
     setModal(null);
   }
+
+  useEffect(() => {
+    if (!modal) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [modal]);
 
   return (
     <ModalContext.Provider value={{ openModal, closeModal }}>

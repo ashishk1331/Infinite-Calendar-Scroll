@@ -32,28 +32,42 @@ The app will be available at [http://localhost:3000](http://localhost:3000).
 
 ---
 
+## Assumptions
+
+1. I've tried to mimic the features shown in the video provided with the assignment.
+1. Based on the video and the assignment details, the main focus was on creating an infinitely smooth calendar and a post carousel.
+1. I've ignored the bottom navigation bar and any other additional features or implementations.
+1. I've aimed to make the UI sufficiently similar to the video for functional purposes. However, I've not focused on "pixel-perfection" due to the lack of design resources.
+1. I've concentrated on implementing the two main elements—calendar and carousel—with utmost care.
+
+---
+
 ## Design Choices
 
 1. **Modal**
-   I've made a custom modal API using `createContext` hook in react. 
-   - It only has two functions: `openModal` and `closeModal`. 
-   - Also, you can press `esc` key to hide the modal.
+   I've built a custom modal API using the `createContext` hook in React.
+
+   * It exposes only two functions: `openModal` and `closeModal`.
+   * The modal can also be closed by pressing the `Esc` key.
 
 2. **Carousel**
-   For making the swipable card UI, I've used [`Embla Carousel`](https://www.embla-carousel.com/).
-   - The active cards are scaled like in the video.
-   - Cards adapt to different screen sizes as well.
+   For the swipeable card UI, I've used [`Embla Carousel`](https://www.embla-carousel.com/).
+
+   * Active cards are scaled just like in the video.
+   * Cards are responsive and adapt to different screen sizes.
 
 3. **Calendar**
-   The calendar follows a week rendering strategy and to maximise the scrolling experience a react virtualialized list library is used, namely [`react-virtuoso`](https://virtuoso.dev/).
-   - Refer to below section to get more in-depth knowledge about the rendering strategy.
-   - Indexes are used to render past/future weeks.
-   - Ranges are used to get present month.
-   *[Also to handle header and first block overlapping situation, always use `start_index - 1` index.]*
+   The calendar follows a week-based rendering strategy, and to maximize the scrolling experience, I've used the [`react-virtuoso`](https://virtuoso.dev/) virtualized list library.
+
+   * Refer to the section below for a more in-depth explanation of the rendering strategy.
+   * Indexes are used to render past and future weeks.
+   * Ranges are used to display the current month.
+   * *To handle the header and first-block overlapping issue, always use the `start_index - 1` index.*
 
 4. **UI**
-   - I've utilised the [Month-view Calendar](https://tailwindcss.com/plus/ui-blocks/application-ui/data-display/calendars#component-c29139529079ea762f118812bbeaeb9e-dark) from the tailwind components library.
-   - Rest of the UI is made by me.
+
+   * I've utilized the [Month-view Calendar](https://tailwindcss.com/plus/ui-blocks/application-ui/data-display/calendars#component-c29139529079ea762f118812bbeaeb9e-dark) from the Tailwind components library.
+   * The rest of the UI is custom-built.
 
 ---
 
@@ -137,7 +151,7 @@ And voila! ✨
 - [x] Configure Next.js image domains for journal images.
 - [x] Deploy to **Vercel**.
 - [x] Connect GitHub repo → Vercel for preview deployments.
-- [ ] Add final README and documentation.
+- [x] Add final README and documentation.
 
 ***
 
@@ -146,7 +160,7 @@ And voila! ✨
 - [x] Animate the month header when it changes.
 - [x] Use TypeScript throughout the project.
 - [x] Add keyboard navigation (arrow keys to move between months).
-- [ ] Add event search or filtering functionality.
+- [ ] ~~Add event search or filtering functionality.~~
 
 ***
 

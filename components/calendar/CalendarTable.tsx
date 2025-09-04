@@ -2,6 +2,7 @@ import { Virtuoso, VirtuosoHandle } from "react-virtuoso";
 import CalendarRow from "./CalendarRow";
 import CalendarHeader from "./CalendarHeader";
 import { useRef, useState, useCallback, useEffect } from "react";
+import { addWeeks, format, getMonth, startOfWeek, subWeeks } from "date-fns";
 
 const TOTAL_WEEKS = 100_000;
 const START_INDEX = TOTAL_WEEKS / 2;
@@ -13,6 +14,13 @@ export default function CalendarTable() {
   const [activeRangeMid, setActiveRangeMid] = useState(START_INDEX);
   const [currentItemIndex, setCurrentItemIndex] = useState(-1);
   const [isScrolling, setIsScrolling] = useState(false);
+
+  const thisWeekStart = startOfWeek(new Date());
+  const offset = activeRangeMid - START_INDEX + 1;
+  const thisDate =
+    offset >= 0
+      ? addWeeks(thisWeekStart, offset)
+      : subWeeks(thisWeekStart, -offset);
 
   function scrollToToday() {
     listRef.current?.scrollToIndex({
@@ -81,7 +89,8 @@ export default function CalendarTable() {
   return (
     <div className="relative h-full w-full">
       <CalendarHeader
-        offset={activeRangeMid - START_INDEX}
+        activeMonth={format(thisDate, "MMM")}
+        activeYear={format(thisDate, "yyyy")}
         scrollToToday={scrollToToday}
       />
       <Virtuoso
@@ -100,6 +109,7 @@ export default function CalendarTable() {
             startIndex={START_INDEX}
             isActive={index === currentItemIndex}
             showMonthIndicator={isScrolling}
+            activeMonth={getMonth(thisDate)}
           />
         )}
         rangeChanged={({ endIndex, startIndex }) =>

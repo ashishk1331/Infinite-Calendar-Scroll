@@ -1,22 +1,18 @@
 import { popUp } from "@/constants/animation";
-import { addWeeks, format, startOfWeek, subWeeks } from "date-fns";
 import { motion, AnimatePresence } from "motion/react";
 
 type CalendarHeaderProps = {
-  offset: number;
+  activeMonth: string;
+  activeYear: string;
   scrollToToday: () => void;
 };
 
 export default function CalendarHeader({
-  offset,
+  activeMonth,
+  activeYear,
   scrollToToday,
 }: CalendarHeaderProps) {
   const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const thisWeekStart = startOfWeek(new Date());
-  const date =
-    offset >= 0
-      ? addWeeks(thisWeekStart, offset)
-      : subWeeks(thisWeekStart, -offset);
 
   return (
     <div className="fixed w-full top-0 z-20 border-b border-neutral-200 bg-gray-50">
@@ -26,21 +22,21 @@ export default function CalendarHeader({
           <h1 className="font-semibold inline-flex gap-1 overflow-hidden leading-tight h-8 items-center">
             <AnimatePresence mode="wait">
               <motion.span
-                key={format(date, "MMM")}
+                key={activeMonth}
                 {...popUp}
                 transition={{ duration: 0.25 }}
                 className="text-indigo-600"
               >
-                {format(date, "MMM")}
+                {activeMonth}
               </motion.span>
             </AnimatePresence>
             <AnimatePresence mode="wait">
               <motion.span
-                key={format(date, "y")}
+                key={activeYear}
                 {...popUp}
                 transition={{ duration: 0.25, delay: 0.05 }}
               >
-                {format(date, "y")}
+                {activeYear}
               </motion.span>
             </AnimatePresence>
           </h1>

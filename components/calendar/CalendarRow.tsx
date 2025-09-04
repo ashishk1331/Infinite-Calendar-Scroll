@@ -30,9 +30,16 @@ type CalendarRowProps = {
   startIndex: number;
   isActive: boolean;
   showMonthIndicator: boolean;
+  activeMonth: number;
 };
 
-const CalendarRow = ({ index, startIndex, isActive, showMonthIndicator }: CalendarRowProps) => {
+const CalendarRow = ({
+  index,
+  startIndex,
+  isActive,
+  showMonthIndicator,
+  activeMonth,
+}: CalendarRowProps) => {
   const { eventsParsed } = useJournals();
   const weekStart = weekStartDate(index, startIndex);
   const weekEnd = endOfWeek(weekStart);
@@ -47,7 +54,7 @@ const CalendarRow = ({ index, startIndex, isActive, showMonthIndicator }: Calend
     days.push({
       date: key,
       day,
-      isCurrentMonth: isSameMonth(new Date(), date),
+      isCurrentMonth: getMonth(date) === activeMonth,
       isToday: isToday(date),
       isSelected: false,
       journal: eventsParsed[key],

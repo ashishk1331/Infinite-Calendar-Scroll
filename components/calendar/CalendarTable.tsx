@@ -12,6 +12,7 @@ export default function CalendarTable() {
 
   const [activeRangeMid, setActiveRangeMid] = useState(START_INDEX);
   const [currentItemIndex, setCurrentItemIndex] = useState(-1);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   function scrollToToday() {
     listRef.current?.scrollToIndex({
@@ -91,12 +92,14 @@ export default function CalendarTable() {
         initialTopMostItemIndex={START_INDEX - 1}
         overscan={2}
         increaseViewportBy={200}
-        context={{ currentItemIndex }}
-        itemContent={(index, _, { currentItemIndex }) => (
+        context={{ currentItemIndex, isScrolling }}
+        isScrolling={setIsScrolling}
+        itemContent={(index, _, { currentItemIndex, isScrolling }) => (
           <CalendarRow
             index={index}
             startIndex={START_INDEX}
             isActive={index === currentItemIndex}
+            showMonthIndicator={isScrolling}
           />
         )}
         rangeChanged={({ endIndex, startIndex }) =>

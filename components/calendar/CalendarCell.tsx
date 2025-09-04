@@ -31,7 +31,7 @@ export default function CalendarCell({
         dateTime={date}
         className={twMerge(
           isToday &&
-          "flex h-6 w-6 items-center justify-center mx-auto rounded-full bg-indigo-600 font-semibold text-white",
+            "flex h-6 w-6 items-center justify-center mx-auto rounded-full bg-indigo-600 font-semibold text-white",
         )}
       >
         {day}
